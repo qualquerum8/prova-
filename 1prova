@@ -1,0 +1,75 @@
+import java.util.Scanner;
+
+public class AtividadesConsolidadas {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("=== MENU DE ATIVIDADES ===");
+        System.out.println("1 - Sistema Escolar");
+        System.out.println("2 - Conversor de Temperatura");
+        System.out.print("Escolha uma opção (1 ou 2): ");
+        
+        int opcao = scanner.nextInt();
+        
+        switch (opcao) {
+            case 1:
+                sistemaEscolar(scanner);
+                break;
+            case 2:
+                conversorTemperatura(scanner);
+                break;
+            default:
+                System.out.println("Opção inválida!");
+        }
+        
+        scanner.close();
+    }
+    
+    public static void sistemaEscolar(Scanner scanner) {
+        double[] notas = new double[8];
+        
+        System.out.println("\n=== SISTEMA ESCOLAR - CÁLCULO DE MÉDIAS ===");
+        System.out.println("Digite as 8 notas anuais do aluno:");
+        
+        for (int i = 0; i < 8; i++) {
+            System.out.printf("Nota %d: ", i + 1);
+            notas[i] = scanner.nextDouble();
+        }
+        
+        double mediaBimestre1 = (notas[0] + notas[1]) / 2;
+        double mediaBimestre2 = (notas[2] + notas[3]) / 2;
+        double mediaBimestre3 = (notas[4] + notas[5]) / 2;
+        double mediaBimestre4 = (notas[6] + notas[7]) / 2;
+        
+        double mediaSemestre1 = (mediaBimestre1 + mediaBimestre2) / 2;
+        double mediaSemestre2 = (mediaBimestre3 + mediaBimestre4) / 2;
+        
+        double mediaFinal = (mediaSemestre1 + mediaSemestre2) / 2;
+        
+        System.out.println("\n=== RESULTADOS ===");
+        System.out.printf("1º Bimestre: %.1f\n", mediaBimestre1);
+        System.out.printf("2º Bimestre: %.1f\n", mediaBimestre2);
+        System.out.printf("1º Semestre: %.1f\n", mediaSemestre1);
+        System.out.println("-----------------------");
+        System.out.printf("3º Bimestre: %.1f\n", mediaBimestre3);
+        System.out.printf("4º Bimestre: %.1f\n", mediaBimestre4);
+        System.out.printf("2º Semestre: %.1f\n", mediaSemestre2);
+        System.out.println("-----------------------");
+        System.out.printf("Média Final: %.1f\n", mediaFinal);
+    }
+    
+    public static void conversorTemperatura(Scanner scanner) {
+        System.out.println("\n=== CONVERSOR DE TEMPERATURA ===");
+        System.out.print("Digite a temperatura em graus Celsius (°C): ");
+        
+        double celsius = scanner.nextDouble();
+        
+        double fahrenheit = (celsius * 9/5) + 32;
+        double kelvin = celsius + 273.15;
+        
+        System.out.println("\n=== RESULTADOS DA CONVERSÃO ===");
+        System.out.printf("Temperatura em Celsius: %.1f °C\n", celsius);
+        System.out.printf("Temperatura em Fahrenheit: %.1f °F\n", fahrenheit);
+        System.out.printf("Temperatura em Kelvin: %.2f K\n", kelvin);
+    }
+}
